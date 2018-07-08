@@ -1,14 +1,11 @@
-var Mask = require('./mask');
-var Vector = require('./vector');
+var Circle = require('./circle');
+var Triangle = require('./triangle');
 var withMaskImages = document.getElementsByClassName('with-mask');
 Array.prototype.forEach.call(withMaskImages, function (el) {
-    new Mask(el)
-        .cover(
-            Vector.liveCircle(50)
-        ).done(function (svg) {
-            console.log(svg);
-            var parent = el.parentElement;
-            parent.innerHTML = '';
-            parent.appendChild(svg);
-        })
+    var wave = new Triangle(el);
+    wave.onload = function (svg) {
+        var parent = el.parentElement;
+        parent.innerHTML = '';
+        parent.appendChild(svg);
+    }
 });
